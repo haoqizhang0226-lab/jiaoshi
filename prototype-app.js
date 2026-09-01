@@ -31,7 +31,8 @@
         custom: ['多媒体教室','白板教室','教学点','外租教室'],
         oneToOne: ['白板教室','多媒体教室','教学点','外租教室']
       },
-      reserveSeats: { preset:1, custom:1, oneToOne:0 }
+      reserveSeats: { preset:1, custom:1, oneToOne:0 },
+      oneToOneSeatLimit: 4
     },
     campuses: [
       { code: '1', name: '南山校区', owner: '陈老师', shortName: '南山', school: '唯寻深圳', status: '有效', province:'广东省', city: '深圳市', phone: '0755-8656 2201', fax: '0755-8656 2202', postcode: '518000' },
@@ -62,17 +63,17 @@
       { id:1, campusCode:'3', campus:'鸿寿校区', school:'唯寻上海', campusStatus:'有效', updatedAt:'2026-08-19 16:20', updatedBy:'李春玲（VA000261）', classConfigs:{
         preset:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:2, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'active' },
         custom:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:1, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'active' },
-        oneToOne:{ enabled:false, courseMode:'all', courses:'全部课程项', reserveSeats:0, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'off' }
+        oneToOne:{ enabled:false, courseMode:'all', courses:'全部课程项', reserveSeats:0, seatLimit:4, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'off' }
       }},
       { id:2, campusCode:'2', campus:'舜元校区', school:'唯寻上海', campusStatus:'有效', updatedAt:'2026-08-19 14:05', updatedBy:'李春玲（VA000261）', classConfigs:{
         preset:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:1, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'active' },
         custom:{ enabled:false, courseMode:'all', courses:'全部课程项', reserveSeats:1, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'off' },
-        oneToOne:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:0, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'active' }
+        oneToOne:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:0, seatLimit:4, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'active' }
       }},
       { id:3, campusCode:'4', campus:'雅仕校区', school:'唯寻上海', campusStatus:'无效', updatedAt:'2026-08-18 18:30', updatedBy:'李春玲（VA000261）', classConfigs:{
         preset:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:2, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'date', effectStart:'2026-09-01T00:00:00', effectEnd:'2026-12-31T23:59:59', status:'waiting' },
         custom:{ enabled:true, courseMode:'all', courses:'全部课程项', reserveSeats:1, priorities:['多媒体教室','白板教室','教学点','外租教室'], effectType:'date', effectStart:'2026-06-01T00:00:00', effectEnd:'2026-08-20T23:59:59', status:'expired' },
-        oneToOne:{ enabled:false, courseMode:'all', courses:'全部课程项', reserveSeats:0, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'off' }
+        oneToOne:{ enabled:false, courseMode:'all', courses:'全部课程项', reserveSeats:0, seatLimit:4, priorities:['白板教室','多媒体教室','教学点','外租教室'], effectType:'long', effectStart:'', effectEnd:'', status:'off' }
       }}
     ],
     roomRules: [
@@ -82,12 +83,12 @@
       { id: 104, name: '望京A栋四层临时保留', scope: '北京望京 / 望京A栋601 / 4F', allowed: '全部课程项 · 全部班型', auto: '不参与自动匹配', roles: '仅教务主管', time: '2026-08-15 至 2026-08-31', status: 'waiting', enabled: true }
     ],
     rooms: [
-      { id:'VISION934', name:'教室1', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'舜元大厦', floor:'1F', seats:5, type:'白板教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:['2026-08-15 至 2026-09-15 10:30-15:30'], blockedPeriods:[{ startDate:'2026-08-15', endDate:'2026-09-15', startTime:'10:30', endTime:'15:30', manualPermissions:['教务排课','教室预定','学管排课'] }] },
-      { id:'VISION933', name:'教室2', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'舜元大厦', floor:'1F', seats:8, type:'多媒体教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:[], blockedPeriods:[] },
-      { id:'VISION932', name:'教室3', status:'无效', campus:'雅仕校区', school:'唯寻上海', building:'雅仕大厦', floor:'2F', seats:12, type:'多媒体教室', inPool:false, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:[], blockedPeriods:[] },
-      { id:'VISION931', name:'教室4', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'雅仕大厦', floor:'2F', seats:8, type:'白板教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:[], blockedPeriods:[] },
-      { id:'VISION930', name:'教室5', status:'有效', campus:'鸿寿校区', school:'唯寻上海', building:'鸿寿坊', floor:'3F', seats:16, type:'多媒体教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:[], blockedPeriods:[] },
-      { id:'VISION929', name:'教室6', status:'有效', campus:'鸿寿校区', school:'唯寻上海', building:'鸿寿坊', floor:'1F', seats:6, type:'白板教室', inPool:false, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', blockedTimes:[], blockedPeriods:[] }
+      { id:'VISION934', name:'教室1', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'舜元大厦', floor:'1F', seats:5, type:'白板教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:['2026-08-15 至 2026-09-15 10:30-15:30'], blockedPeriods:[{ startDate:'2026-08-15', endDate:'2026-09-15', startTime:'10:30', endTime:'15:30' }] },
+      { id:'VISION933', name:'教室2', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'舜元大厦', floor:'1F', seats:8, type:'多媒体教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:[], blockedPeriods:[] },
+      { id:'VISION932', name:'教室3', status:'无效', campus:'雅仕校区', school:'唯寻上海', building:'雅仕大厦', floor:'2F', seats:12, type:'多媒体教室', inPool:false, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:[], blockedPeriods:[] },
+      { id:'VISION931', name:'教室4', status:'有效', campus:'舜元校区', school:'唯寻上海', building:'雅仕大厦', floor:'2F', seats:8, type:'白板教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:[], blockedPeriods:[] },
+      { id:'VISION930', name:'教室5', status:'有效', campus:'鸿寿校区', school:'唯寻上海', building:'鸿寿坊', floor:'3F', seats:16, type:'多媒体教室', inPool:true, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:[], blockedPeriods:[] },
+      { id:'VISION929', name:'教室6', status:'有效', campus:'鸿寿校区', school:'唯寻上海', building:'鸿寿坊', floor:'1F', seats:6, type:'白板教室', inPool:false, restrictClass:false, classTypes:['预设班','自组班','1V1'], restrictCourse:false, courses:'全部课程项', terminalBlacklist:[], blockedTimes:[], blockedPeriods:[] }
     ],
     manualRows: [
       { id: 'C20260812001', type: 'no-room', className: 'A-Level数学预设班', classType: '预设班', time: '2026-08-18 10:30-12:30', campus: '舜元', teacher: '王老师', students: 8, reserve: 1, current: '无教室', plan: 'closed', targetRoom: 'A102（8座）', replacement: 'A101（5座）', occupiedCourse: 'IG经济自组班（5人）', status: '待人工换配' },
@@ -133,9 +134,9 @@
       { id:'CL-8', date:'2026-08-29', time:'14:00-16:00', className:'GCSE生物自组班', student:'周同学、郑同学等', classType:'自组班', enrolled:8, capacity:9, currentRoom:'雅仕大厦·教室3（VISION932）', currentSeats:7, campus:'雅仕校区', teacher:'周老师', manager:'陈老师', note:'需增加2座', available:0, status:'容量不符' }
     ],
     mediaMatchingFailures:[
-      { id:'MMF-1', classCode:'01077801260822-0109', className:'吴萱-英联邦学科-ALEVEL-经济&物理-1V1', lessonTime:'2026-08-23 17:30-19:30', classType:'1V1', teachingMode:'OMO', student:'吴萱', memberLevel:'普通会员', currentStudents:1, requiredCapacity:2, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'1F', currentRoom:'教室1（VISION934）', currentSeats:4, manager:'张老师', exclusiveManager:'陈老师', teacherCode:'T2026086', teacherName:'王老师', roomType:'白板教室', noticeSent:false, candidateRoomIds:['MEDIA-FREE-1','MEDIA-FREE-2','MEDIA-FREE-3'] },
-      { id:'MMF-2', classCode:'01086215260821-0001', className:'David-英联邦语培-雅思-口语&写作-1V1', lessonTime:'2026-08-23 15:45-16:15', classType:'1V1', teachingMode:'OMO', student:'David', memberLevel:'普通会员', currentStudents:1, requiredCapacity:2, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'1F', currentRoom:'教室6（VISION929）', currentSeats:6, manager:'李老师', exclusiveManager:'', teacherCode:'T2026041', teacherName:'陈老师', roomType:'白板教室', noticeSent:false, candidateRoomIds:['MEDIA-FREE-1','MEDIA-FREE-2'] },
-      { id:'MMF-3', classCode:'01077801260822-0104', className:'邹蔚青-英联邦学科-ALEVEL-经济-1V1', lessonTime:'2026-08-23 10:30-12:00', classType:'1V1', teachingMode:'OMO', student:'邹蔚青', memberLevel:'黑金会员', currentStudents:1, requiredCapacity:3, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'1F', currentRoom:'教室4（VISION931）', currentSeats:3, manager:'周老师', exclusiveManager:'吕老师', teacherCode:'T2026112', teacherName:'赵老师', roomType:'白板教室', noticeSent:false, candidateRoomIds:[] }
+      { id:'MMF-1', classCode:'01077801260822-0109', className:'张三-ALEVEL-物理-CAIE-1V1', lessonTime:'2026-08-27 08:20-10:20', classType:'1V1', teachingMode:'OMO', student:'张三', memberLevel:'普通会员', currentStudents:1, requiredCapacity:2, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'10L', currentRoom:'教室01（VISION934）', currentSeats:4, manager:'张老师', exclusiveManager:'陈老师', teacherCode:'T2026086', teacherName:'王老师', roomType:'白板教室', candidateRoomIds:['MEDIA-FREE-1','MEDIA-FREE-2','MEDIA-FREE-3'] },
+      { id:'MMF-2', classCode:'01086215260821-0001', className:'David-英联邦语培-雅思-口语&写作-1V1', lessonTime:'2026-08-23 15:45-16:15', classType:'1V1', teachingMode:'OMO', student:'David', memberLevel:'普通会员', currentStudents:1, requiredCapacity:2, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'1F', currentRoom:'教室6（VISION929）', currentSeats:6, manager:'李老师', exclusiveManager:'', teacherCode:'T2026041', teacherName:'陈老师', roomType:'白板教室', candidateRoomIds:['MEDIA-FREE-1','MEDIA-FREE-2'] },
+      { id:'MMF-3', classCode:'01077801260822-0104', className:'邹蔚青-英联邦学科-ALEVEL-经济-1V1', lessonTime:'2026-08-23 10:30-12:00', classType:'1V1', teachingMode:'OMO', student:'邹蔚青', memberLevel:'黑金会员', currentStudents:1, requiredCapacity:3, campus:'舜元校区', currentBuilding:'舜元大厦', currentFloor:'1F', currentRoom:'教室4（VISION931）', currentSeats:3, manager:'周老师', exclusiveManager:'吕老师', teacherCode:'T2026112', teacherName:'赵老师', roomType:'白板教室', candidateRoomIds:[] }
     ],
     transferCandidates:{
       'ML-1':[
@@ -189,7 +190,7 @@
     { id:'MEDIA-FREE-3', name:'教室10', code:'VISION925', campus:'舜元校区', building:'舜元书院', floor:'3F', type:'多媒体教室', seats:12, available:true }
   ];
 
-  const manualUsePermissionOptions = ['教务排课','教室预定','学管排课'];
+  const roomTerminalOptions = ['教务排课','教室预定','学管排课'];
   const poolClassTypes = [
     { key:'preset', label:'预设班' },
     { key:'custom', label:'自组班' },
@@ -318,11 +319,6 @@
     toast(`已${state.autoTaskEnabled ? '开启' : '关闭'}自动匹配任务`,state.autoTaskEnabled ? 'success' : 'info');
   }
 
-  function runManualMatchingTask() {
-    state.autoTaskLogs.unshift({ operator:'李春玲（VA000261）', time:formatOperationTime(), content:'手动触发匹配任务' });
-    toast('已手动触发一次教室匹配任务，系统将按当前规则执行','info');
-  }
-
   function openAutoTaskLog() {
     const rows = state.autoTaskLogs.map(log => {
       const tone = log.content.startsWith('关闭') ? 'off' : log.content.startsWith('开启') ? 'on' : 'manual';
@@ -342,7 +338,7 @@
     const tabs = `<div class="tabs missing-overview-tabs"><button class="tab ${state.missingOverviewTab === 'missing' ? 'active' : ''}" data-action="missing-overview-tab" data-type="missing">缺教室课节</button><button class="tab ${capacityMode ? 'active' : ''}" data-action="missing-overview-tab" data-type="capacity">容量不符课节</button><button class="tab ${recordsMode ? 'active' : ''}" data-action="missing-overview-tab" data-type="records">教室匹配记录</button><button class="tab ${conflictMode ? 'active' : ''}" data-action="missing-overview-tab" data-type="conflicts">校区冲突</button></div>`;
     if (recordsMode) return `<div class="page-head"><h1>教室匹配记录</h1></div>${tabs}${renderMatchingRecordsPage()}`;
     if (conflictMode) return `<div class="page-head"><h1>校区冲突</h1></div>${tabs}${notice('展示同一课节在多个校区或教室安排中产生的资源冲突。')}<div class="empty"><div class="empty-inner"><div class="empty-icon">□</div>暂无校区冲突记录</div></div>`;
-    return `<div class="page-head"><h1>缺教室课节</h1><div class="head-actions"><button class="auto-task-toggle ${state.autoTaskEnabled ? 'on' : 'off'}" data-action="toggle-auto-matching-task"><i></i>${state.autoTaskEnabled ? '已开启自动匹配' : '已关闭自动匹配'}</button><button class="btn primary auto-match-button" data-action="run-auto-matching">立即匹配教室</button><button class="btn auto-task-log-button" data-action="open-auto-task-log" title="操作日志" aria-label="查看教室匹配按钮操作日志"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.35-5.65L4 8.7"></path><path d="M4 4v4.7h4.7"></path><path d="M12 7.5V12l3 1.8"></path></svg></button></div></div>
+    return `<div class="page-head"><h1>缺教室课节</h1><div class="head-actions"><button class="auto-task-toggle ${state.autoTaskEnabled ? 'on' : 'off'}" data-action="toggle-auto-matching-task"><i></i>${state.autoTaskEnabled ? '已开启自动匹配' : '已关闭自动匹配'}</button><button class="btn auto-task-log-button" data-action="open-auto-task-log" title="操作日志" aria-label="查看教室匹配按钮操作日志"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.35-5.65L4 8.7"></path><path d="M4 4v4.7h4.7"></path><path d="M12 7.5V12l3 1.8"></path></svg></button></div></div>
       ${tabs}
       ${notice(capacityMode ? '包含已排教室、教学点但当前教室座位数小于需要的教室容量的线下课程、OMO课程' : mediaMode ? '展示学生要求使用多媒体教室，但当前匹配为其他教室类型的课节' : teachingPointMode ? '展示当前已安排至教学点的课节' : '包含缺教室的课次类型：1、线下课程；2、OMO课程；包含排了教学点的课节；包含多媒体教室匹配失败的课节')}
       <div class="missing-overview-filter ${capacityMode ? 'capacity-filter' : ''}">
@@ -452,18 +448,16 @@
 
   function renderMediaMatchingFailureTable(lessons = state.mediaMatchingFailures) {
     const rows = lessons.map(lesson => {
-      const canSend = Boolean(lesson.exclusiveManager) && !lesson.noticeSent;
       const canReplace = mediaReplacementCandidates(lesson).length > 0;
       const courseName = mediaCourseName(lesson.className);
       return `<tr>
-      <td><input type="checkbox" data-media-failure-check value="${lesson.id}" aria-label="选择${escapeHtml(lesson.className)}" ${canSend ? '' : 'disabled'}></td>
       <td><span class="drawer-ellipsis" title="${escapeHtml(lesson.classCode)}">${escapeHtml(lesson.classCode)}</span></td>
       <td><span class="drawer-ellipsis" title="${escapeHtml(lesson.className)}">${escapeHtml(lesson.className)}</span></td>
       <td>${lesson.lessonTime}</td><td><span class="drawer-ellipsis" title="${escapeHtml(courseName)}">${escapeHtml(courseName)}</span></td><td>${lesson.classType}</td><td>${lesson.teachingMode}</td><td>${escapeHtml(lesson.student)}</td><td>${lesson.memberLevel}</td><td>${escapeHtml(lesson.manager)}</td><td>${escapeHtml(lesson.exclusiveManager || '--')}</td><td>${lesson.teacherCode}</td><td>多媒体</td><td>${lesson.roomType}</td>
-      <td><div class="drawer-actions"><button class="drawer-action" data-action="send-media-notice" data-id="${lesson.id}" ${canSend ? '' : 'disabled'}>${lesson.noticeSent ? '已发送' : '发送通知'}</button><button class="drawer-action" data-action="replace-media-room" data-id="${lesson.id}" ${canReplace ? '' : 'disabled'}>更换教室</button></div></td>
+      <td><div class="drawer-actions"><button class="drawer-action" data-action="open-media-lesson-copy" data-id="${lesson.id}">复制课节信息</button><button class="drawer-action" data-action="replace-media-room" data-id="${lesson.id}" ${canReplace ? '' : 'disabled'}>更换教室</button></div></td>
     </tr>`;
     }).join('');
-    return `<div class="missing-drawer-table media-failure-table"><table><colgroup><col style="width:3%"><col style="width:8%"><col style="width:12%"><col style="width:9%"><col style="width:10%"><col style="width:5%"><col style="width:5%"><col style="width:5%"><col style="width:5%"><col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:5%"><col style="width:9%"></colgroup><thead><tr><th><input type="checkbox" data-media-failure-check-all aria-label="全选"></th><th>班级编号</th><th>班级名称</th><th>课节时间</th><th>课程名称</th><th>班型</th><th>授课模式</th><th>学生</th><th>会员等级</th><th>班课班主任</th><th>专属班主任</th><th>授课老师</th><th>教室偏好</th><th>当前教室类型</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table></div><div class="missing-drawer-pagination"><button disabled>‹</button><button class="active">1</button><button disabled>›</button><select><option>300条/页</option></select><span>共${lessons.length}条</span><span>前往</span><input value="1"><span>页</span></div>`;
+    return `<div class="missing-drawer-table media-failure-table"><table><colgroup><col style="width:8%"><col style="width:12%"><col style="width:9%"><col style="width:10%"><col style="width:5%"><col style="width:5%"><col style="width:5%"><col style="width:5%"><col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:5%"><col style="width:12%"></colgroup><thead><tr><th>班级编号</th><th>班级名称</th><th>课节时间</th><th>课程名称</th><th>班型</th><th>授课模式</th><th>学生</th><th>会员等级</th><th>班课班主任</th><th>专属班主任</th><th>授课老师</th><th>教室偏好</th><th>当前教室类型</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table></div><div class="missing-drawer-pagination"><button disabled>‹</button><button class="active">1</button><button disabled>›</button><select><option>300条/页</option></select><span>共${lessons.length}条</span><span>前往</span><input value="1"><span>页</span></div>`;
   }
 
   function mediaCourseName(className) {
@@ -474,56 +468,55 @@
   function openMediaMatchingFailureDrawer(selectedDate = '') {
     const lessons = selectedDate ? state.mediaMatchingFailures.filter(lesson => lesson.lessonTime.startsWith(selectedDate)) : state.mediaMatchingFailures;
     const title = selectedDate ? `多媒体匹配失败课节（${selectedDate}）` : '多媒体匹配失败课节';
-    modalRoot.innerHTML = `<div class="missing-drawer-mask"><aside class="missing-drawer media-failure-drawer"><div class="missing-drawer-head"><button class="missing-drawer-close" data-action="close-modal">×</button><h2>${title}</h2><div class="drawer-head-actions"><button class="btn" data-action="send-selected-media-notices" disabled>发送通知</button><button class="btn primary">导出Excel</button></div></div><div class="missing-drawer-body">${renderMediaMatchingFailureTable(lessons)}</div></aside></div>`;
+    modalRoot.innerHTML = `<div class="missing-drawer-mask"><aside class="missing-drawer media-failure-drawer"><div class="missing-drawer-head"><button class="missing-drawer-close" data-action="close-modal">×</button><h2>${title}</h2><div class="drawer-head-actions"><button class="btn primary">导出Excel</button></div></div><div class="missing-drawer-body">${renderMediaMatchingFailureTable(lessons)}</div></aside></div>`;
   }
 
-  function updateMediaFailureSelection() {
-    const checks = [...modalRoot.querySelectorAll('[data-media-failure-check]')].filter(input => !input.disabled);
-    const selected = checks.filter(input => input.checked);
-    const checkAll = modalRoot.querySelector('[data-media-failure-check-all]');
-    if (checkAll) {
-      checkAll.checked = checks.length > 0 && selected.length === checks.length;
-      checkAll.indeterminate = selected.length > 0 && selected.length < checks.length;
-      checkAll.disabled = checks.length === 0;
-    }
-    const button = modalRoot.querySelector('[data-action="send-selected-media-notices"]');
-    if (button) {
-      button.disabled = selected.length === 0;
-      button.textContent = selected.length ? `发送通知（${selected.length}）` : '发送通知';
-    }
+  function mediaMatchedRoomText(lesson) {
+    const roomName = String(lesson.currentRoom || '--').replace(/[（(].*$/, '');
+    return `${roomName}-${lesson.campus}-${lesson.currentFloor}-${lesson.roomType}`;
   }
 
-  function sendSelectedMediaFailureNotices() {
-    const selected = [...modalRoot.querySelectorAll('[data-media-failure-check]:checked')];
-    if (!selected.length) return toast('请先选择需要发送通知的课节','error');
-    let sentCount = 0;
-    selected.forEach(input => {
-      const lesson = state.mediaMatchingFailures.find(item => item.id === input.value);
-      if (!lesson || !lesson.exclusiveManager || lesson.noticeSent) return;
-      lesson.noticeSent = true;
-      const action = input.closest('tr')?.querySelector('[data-action="send-media-notice"]');
-      if (action) { action.textContent = '已发送'; action.disabled = true; }
-      input.checked = false;
-      input.disabled = true;
-      sentCount += 1;
-    });
-    updateMediaFailureSelection();
-    if (sentCount) toast(`已为选中的${sentCount}节课发送通知`);
+  function mediaLessonNoticeText(lesson) {
+    return [
+      '多媒体教室匹配失败通知',
+      `学生姓名：${lesson.student}`,
+      `课程名称：${mediaCourseName(lesson.className)}`,
+      `上课时间：${lesson.lessonTime}`,
+      `班级名称：${lesson.className}`,
+      '教室偏好：多媒体',
+      `已匹配教室：${mediaMatchedRoomText(lesson)}`
+    ].join('\n');
   }
 
-  function sendMediaFailureNotice(id,button) {
+  function openMediaLessonCopyDialog(id) {
     const lesson = state.mediaMatchingFailures.find(item => item.id === id);
-    if (!lesson || !lesson.exclusiveManager || lesson.noticeSent) return;
-    lesson.noticeSent = true;
-    button.textContent = '已发送';
-    button.disabled = true;
-    const checkbox = button.closest('tr')?.querySelector('[data-media-failure-check]');
-    if (checkbox) {
-      checkbox.checked = false;
-      checkbox.disabled = true;
+    if (!lesson) return;
+    const courseName = mediaCourseName(lesson.className);
+    const matchedRoom = mediaMatchedRoomText(lesson);
+    modalRoot.insertAdjacentHTML('beforeend',`<div class="modal-mask media-copy-dialog-mask" data-media-copy-dialog><div class="modal media-copy-dialog"><div class="modal-head"><h2>复制课节信息</h2><button class="modal-close" data-action="close-media-copy-dialog">×</button></div><div class="modal-body"><section class="media-copy-notice"><h3>多媒体教室匹配失败通知</h3><dl><div><dt>学生姓名</dt><dd>${escapeHtml(lesson.student)}</dd></div><div><dt>课程名称</dt><dd>${escapeHtml(courseName)}</dd></div><div><dt>上课时间</dt><dd>${escapeHtml(lesson.lessonTime)}</dd></div><div><dt>班级名称</dt><dd>${escapeHtml(lesson.className)}</dd></div><div><dt>教室偏好</dt><dd>多媒体</dd></div><div><dt>已匹配教室</dt><dd>${escapeHtml(matchedRoom)}</dd></div></dl></section></div><div class="modal-foot"><button class="btn" data-action="close-media-copy-dialog">关闭</button><button class="btn primary" data-action="copy-media-lesson-content" data-id="${lesson.id}">复制</button></div></div></div>`);
+  }
+
+  async function copyMediaLessonInfo(id,button) {
+    const lesson = state.mediaMatchingFailures.find(item => item.id === id);
+    if (!lesson) return;
+    const text = mediaLessonNoticeText(lesson);
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      copied = true;
+    } catch (error) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      copied = document.execCommand('copy');
+      textarea.remove();
     }
-    updateMediaFailureSelection();
-    toast(`已向${lesson.student}及相关老师发送教室调整通知`);
+    if (!copied) return toast('复制失败，请手动选择内容复制','error');
+    button.textContent = '已复制';
+    toast('课节信息已复制');
   }
 
   function renderMediaFreeCandidate(room,lesson,index) {
@@ -612,7 +605,8 @@
 
   function campusClassDetailCard(key,config) {
     const labels = { preset:'预设班特殊规则', custom:'自组班特殊规则', oneToOne:'1V1特殊规则' };
-    return `<section class="campus-class-card detail" data-campus-class-card="${key}"><div class="campus-class-card-head"><h3>${labels[key]}</h3>${statusText(resolveCampusConfigStatus(config))}</div><dl><div><dt>适用课程项</dt><dd>${escapeHtml(config.courseMode === 'all' ? '全部课程项' : config.courses)}</dd></div><div><dt>预留座位</dt><dd>${config.reserveSeats}座</dd></div><div><dt>教室优先级</dt><dd>${escapeHtml(config.priorities.join(' → '))}</dd></div><div><dt>生效时间</dt><dd>${escapeHtml(campusEffectText(config))}</dd></div></dl></section>`;
+    const seatLimit = key === 'oneToOne' ? `<div><dt>教室座位数上限</dt><dd>${config.seatLimit || state.commonRule.oneToOneSeatLimit}座</dd></div>` : '';
+    return `<section class="campus-class-card detail" data-campus-class-card="${key}"><div class="campus-class-card-head"><h3>${labels[key]}</h3>${statusText(resolveCampusConfigStatus(config))}</div><dl><div><dt>适用课程项</dt><dd>${escapeHtml(config.courseMode === 'all' ? '全部课程项' : config.courses)}</dd></div><div><dt>预留座位</dt><dd>${config.reserveSeats}座</dd></div>${seatLimit}<div><dt>教室优先级</dt><dd>${escapeHtml(config.priorities.join(' → '))}</dd></div><div><dt>生效时间</dt><dd>${escapeHtml(campusEffectText(config))}</dd></div></dl></section>`;
   }
 
   function roomRuleSummary(room) {
@@ -692,8 +686,6 @@
   function openCampusEditor(code) {
     const existing = state.campuses.find(item => item.code === code);
     const campus = existing || { code:'', name:'', owner:'', shortName:'', school:'唯寻上海', status:'有效', province:'', city:'', phone:'', fax:'', postcode:'' };
-    const buildings = campusBuildings(campus.name);
-    const editorBuildings = buildings.length ? buildings : [null];
     const campusForm = `<div class="combined-section-title"><b>校区信息</b></div><div class="campus-edit-form">
       <div class="modal-field"><label><span class="required">*</span> 校区编号</label><input class="text-input ${existing ? 'readonly-input' : ''}" id="campus-code" maxlength="20" value="${escapeHtml(campus.code)}" ${existing ? 'readonly' : ''} placeholder="请输入校区编号"></div>
       <div class="modal-field"><label><span class="required">*</span> 校区名称</label><input class="text-input" id="campus-name" maxlength="30" value="${escapeHtml(campus.name)}" placeholder="请输入校区名称"></div>
@@ -706,8 +698,7 @@
       <div class="modal-field"><label>传真</label><input class="text-input" id="campus-fax" maxlength="20" value="${escapeHtml(campus.fax)}" placeholder="请输入传真"></div>
       <div class="modal-field"><label>邮编</label><input class="text-input" id="campus-postcode" maxlength="20" value="${escapeHtml(campus.postcode)}" placeholder="请输入邮编"></div>
     </div>`;
-    const buildingForm = `<div class="combined-section-title building-title"><b>楼栋信息</b><button class="btn primary create" data-action="add-inline-building">添加楼栋</button></div><div class="inline-buildings" id="inline-buildings">${editorBuildings.map((building,index)=>inlineBuildingForm(building,index)).join('')}</div>`;
-    openModal({ title: existing ? `修改校区 · ${campus.name}` : '新增校区', body:`<div class="combined-campus-editor">${campusForm}${buildingForm}</div>`, wide:true, confirm:'保存', confirmAction:'save-campus-entity', cancel:'取消' });
+    openModal({ title: existing ? `修改校区 · ${campus.name}` : '新增校区', body:`<div class="combined-campus-editor">${campusForm}</div>`, wide:true, confirm:'保存', confirmAction:'save-campus-entity', cancel:'取消' });
     modalRoot.querySelector('[data-action="save-campus-entity"]').dataset.originalCode = existing?.code || '';
   }
 
@@ -717,11 +708,33 @@
     if (!originalCode && state.campuses.some(item => item.code === campusCode)) return toast('校区编号已存在','error');
     const name = document.getElementById('campus-name').value.trim();
     if (!name) return toast('请输入校区名称','error');
+    const currentCampus = state.campuses.find(item => item.code === originalCode);
+    const oldCampusName = currentCampus?.name || name;
+    const values = { code:campusCode, name, owner:document.getElementById('campus-owner').value.trim(), shortName:document.getElementById('campus-short-name').value.trim(), school:document.getElementById('campus-school').value, status:document.getElementById('campus-status').value, province:document.getElementById('campus-province').value, city:document.getElementById('campus-city').value, phone:document.getElementById('campus-phone').value.trim(), fax:document.getElementById('campus-fax').value.trim(), postcode:document.getElementById('campus-postcode').value.trim() };
+    const index = state.campuses.findIndex(item => item.code === originalCode);
+    if (index >= 0) state.campuses[index] = values; else state.campuses.push(values);
+    if (index >= 0 && oldCampusName !== name) state.buildings.forEach(building => { if (building.campus === oldCampusName) building.campus = name; });
+    closeModal(); render(); toast(index >= 0 ? '校区信息已更新' : '校区已新增，请通过“修改楼栋”维护楼栋信息');
+  }
+
+  function openCampusBuildingEditor(code) {
+    const campus = state.campuses.find(item => item.code === code);
+    if (!campus) return;
+    const buildings = campusBuildings(campus.name);
+    const editorBuildings = buildings.length ? buildings : [null];
+    const body = `<div class="campus-building-overview"><span>所属校区</span><b>${escapeHtml(campus.name)}</b><em>${escapeHtml(campus.code)}</em></div>
+      <div class="combined-section-title building-title"><b>楼栋信息</b><button class="btn primary create" data-action="add-inline-building">添加楼栋</button></div>
+      <div class="inline-buildings" id="inline-buildings">${editorBuildings.map((building,index)=>inlineBuildingForm(building,index)).join('')}</div>`;
+    openModal({ title:`修改楼栋 · ${campus.name}`, body, wide:true, confirm:'保存', confirmAction:'save-campus-buildings', cancel:'取消' });
+    modalRoot.querySelector('[data-action="save-campus-buildings"]').dataset.code = campus.code;
+  }
+
+  function saveCampusBuildings(code) {
+    const campus = state.campuses.find(item => item.code === code);
+    if (!campus) return;
     const buildingForms = [...modalRoot.querySelectorAll('.inline-building')];
     if (!buildingForms.length) return toast('请至少配置一栋楼','error');
     const buildings = [];
-    const currentCampus = state.campuses.find(item => item.code === originalCode);
-    const oldCampusName = currentCampus?.name || name;
     for (let index = 0; index < buildingForms.length; index += 1) {
       const form = buildingForms[index];
       const buildingId = form.querySelector('.inline-building-id').value.trim();
@@ -732,17 +745,14 @@
       const label = `楼栋${buildingOrderNames[index] || index + 1}`;
       if (!buildingId) return toast(`请输入${label}编号`,'error');
       if (!/^\d+$/.test(buildingId)) return toast(`${label}编号仅支持纯数字`,'error');
-      if (buildings.some(item => item.id === buildingId) || state.buildings.some(item => item.id === buildingId && item.campus !== oldCampusName)) return toast(`${label}编号已存在`,'error');
+      if (buildings.some(item => item.id === buildingId) || state.buildings.some(item => item.id === buildingId && item.campus !== campus.name)) return toast(`${label}编号已存在`,'error');
       if (!buildingName) return toast(`请输入${label}名称`,'error');
       if (!floors.length) return toast(`请选择${label}的启用楼层`,'error');
-      buildings.push({ id:buildingId, campus:name, name:buildingName, status:form.querySelector('.inline-building-status').value, order:index + 1, floors, address, route });
+      buildings.push({ id:buildingId, campus:campus.name, name:buildingName, status:form.querySelector('.inline-building-status').value, order:index + 1, floors, address, route });
     }
-    const values = { code:campusCode, name, owner:document.getElementById('campus-owner').value.trim(), shortName:document.getElementById('campus-short-name').value.trim(), school:document.getElementById('campus-school').value, status:document.getElementById('campus-status').value, province:document.getElementById('campus-province').value, city:document.getElementById('campus-city').value, phone:document.getElementById('campus-phone').value.trim(), fax:document.getElementById('campus-fax').value.trim(), postcode:document.getElementById('campus-postcode').value.trim() };
-    const index = state.campuses.findIndex(item => item.code === originalCode);
-    if (index >= 0) state.campuses[index] = values; else state.campuses.push(values);
-    state.buildings = state.buildings.filter(item => item.campus !== oldCampusName);
+    state.buildings = state.buildings.filter(item => item.campus !== campus.name);
     state.buildings.push(...buildings);
-    closeModal(); render(); toast(index >= 0 ? '校区及楼栋信息已更新' : '校区及楼栋信息已新增');
+    closeModal(); render(); toast(`${campus.name}楼栋信息已更新`);
   }
 
   function campusBuildings(campusName) {
@@ -770,9 +780,9 @@
   }
 
   function renderCampusManagement() {
-    const rows = state.campuses.map(campus => `<tr><td><span class="classroom-code">${campus.code}</span></td><td>${escapeHtml(campus.name)}</td><td>${escapeHtml(campus.owner || '--')}</td><td>${escapeHtml(campus.shortName || '--')}</td><td>${escapeHtml(campus.school)}</td><td><span class="status-dot ${campus.status === '有效' ? '' : 'off'}">${escapeHtml(campus.status || '有效')}</span></td><td>${escapeHtml(formatCampusLocation(campus))}</td><td>${escapeHtml(campus.phone || '--')}</td><td>${escapeHtml(campus.fax || '--')}</td><td>${escapeHtml(campus.postcode || '--')}</td><td><div class="campus-row-actions"><span class="action-link" data-action="view-campus-entity" data-code="${campus.code}">查看</span><span class="action-link" data-action="edit-campus-entity" data-code="${campus.code}">修改</span></div></td></tr>`).join('');
+    const rows = state.campuses.map(campus => `<tr><td><span class="classroom-code">${campus.code}</span></td><td>${escapeHtml(campus.name)}</td><td>${escapeHtml(campus.owner || '--')}</td><td>${escapeHtml(campus.shortName || '--')}</td><td>${escapeHtml(campus.school)}</td><td><span class="status-dot ${campus.status === '有效' ? '' : 'off'}">${escapeHtml(campus.status || '有效')}</span></td><td>${escapeHtml(formatCampusLocation(campus))}</td><td>${escapeHtml(campus.phone || '--')}</td><td>${escapeHtml(campus.fax || '--')}</td><td>${escapeHtml(campus.postcode || '--')}</td><td><div class="campus-row-actions"><span class="action-link" data-action="view-campus-entity" data-code="${campus.code}">查看</span><span class="action-link" data-action="edit-campus-entity" data-code="${campus.code}">修改校区</span><span class="action-link" data-action="edit-campus-buildings" data-code="${campus.code}">修改楼栋</span></div></td></tr>`).join('');
     return `<div class="page-head campus-management-head"><h1>校区管理</h1><div class="head-actions"><button class="btn primary create" data-action="add-campus-entity">新增校区</button></div></div>
-      <div class="data-table campus-management-table simple-campus-table"><table><thead><tr><th style="width:80px">校区编号</th><th style="width:110px">校区名称</th><th style="width:90px">负责人</th><th style="width:75px">简称</th><th style="width:105px">所属学校</th><th style="width:75px">状态</th><th style="width:120px">省份 / 城市</th><th style="width:130px">电话</th><th style="width:130px">传真</th><th style="width:90px">邮编</th><th style="width:100px">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      <div class="data-table campus-management-table simple-campus-table"><table><thead><tr><th style="width:80px">校区编号</th><th style="width:110px">校区名称</th><th style="width:90px">负责人</th><th style="width:75px">简称</th><th style="width:105px">所属学校</th><th style="width:75px">状态</th><th style="width:120px">省份 / 城市</th><th style="width:130px">电话</th><th style="width:130px">传真</th><th style="width:90px">邮编</th><th style="width:190px">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   }
 
   function pageHead() {
@@ -794,11 +804,11 @@
     const calendarCollapsed = state.scheduleCalendarCollapsed;
     return `<div class="schedule-order-page">
       <div class="order-detail-toolbar"><span class="order-back">‹ 返回</span><span class="order-crumb">排课单</span><button class="btn order-refresh">↻&nbsp; 更新排课数据</button><div class="order-toolbar-actions"><button class="btn">预览学生课表</button><button class="btn primary">结束排课单</button></div></div>
-      <section class="order-summary-panel"><div class="order-title">授课反馈产品验收-英联邦学科-ALEVEL-物理-1v1试听</div><div class="order-meta"><span>学生姓名： <b><i class="order-member">黑金</i>&nbsp; 授课反馈产品验收</b></span><span>班级课时： <b>0.25</b></span><span>未排课时： <b>-1.75</b></span><span>排课课程： <b class="order-course-tag"><i>★ 金牌</i>ALEVEL-物理-AQA-AS 【0.25/2】</b></span></div></section>
+      <section class="order-summary-panel"><div class="order-title"><span>授课反馈产品验收-英联邦学科-ALEVEL-物理-1v1试听</span><button class="order-selection-btn media-preference" data-action="toggle-schedule-media-preference" aria-pressed="${mediaState}"><i></i>优先多媒体</button></div><div class="order-meta"><span>学生姓名： <b><i class="order-member">黑金</i>&nbsp; 授课反馈产品验收</b></span><span>班级课时： <b>0.25</b></span><span>未排课时： <b>-1.75</b></span><span>排课课程： <b class="order-course-tag"><i>★ 金牌</i>ALEVEL-物理-AQA-AS 【0.25/2】</b></span></div></section>
       <section class="order-section ${teacherCollapsed ? 'is-collapsed' : ''}"><div class="order-section-head">教师排课 <span>▦</span><button data-action="toggle-order-section" data-section="teacher" aria-label="${teacherCollapsed ? '展开' : '收起'}教师排课">${teacherCollapsed ? '›' : '⌄'}</button></div><div class="order-section-body">
         <div class="order-teacher-row"><span>已关联教师：</span><span class="order-teacher-chip">李春玲(VA000261)<i>×</i></span><div class="order-status-legend"><span><i class="published"></i>已发布</span><span><i class="pending"></i>待发布</span><span><i class="change"></i>待变更</span><span><i class="conflict"></i>冲突</span></div></div>
         <div class="order-tool-row"><button class="btn">添加课程时间</button><button class="btn">冲突检测</button><button class="btn">冲突详情</button><button class="btn">查看排课要求</button><button class="btn">查找可用课次</button><button class="btn">清除空白课次</button><button class="btn">回写班级</button><button class="btn">回写班级课表</button><button class="btn">查看回写记录</button><button class="btn">排课日志</button></div>
-        <div class="order-tool-row"><button class="order-selection-btn close-batch"><span></span>关闭批量操作</button><button class="order-selection-btn" data-action="toggle-order-selection" aria-pressed="${selectionState}"><span></span>全选</button><button class="btn" disabled>时间调整</button><button class="btn" disabled>关联课程</button><button class="btn" disabled>关联教师</button><button class="btn" disabled>关联教室</button><button class="btn" disabled>取消教室</button><button class="btn" disabled>删除节课</button><button class="btn" disabled>添加备注</button><button class="btn" disabled>回写选中课次</button><button class="btn" disabled>修改授课模式</button><button class="btn" disabled>添加课导</button><button class="order-selection-btn media-preference" data-action="toggle-schedule-media-preference" aria-pressed="${mediaState}"><span></span>优先多媒体</button></div>
+        <div class="order-tool-row"><button class="order-selection-btn close-batch"><span></span>关闭批量操作</button><button class="order-selection-btn" data-action="toggle-order-selection" aria-pressed="${selectionState}"><span></span>全选</button><button class="btn" disabled>时间调整</button><button class="btn" disabled>关联课程</button><button class="btn" disabled>关联教师</button><button class="btn" disabled>关联教室</button><button class="btn" disabled>取消教室</button><button class="btn" disabled>删除节课</button><button class="btn" disabled>添加备注</button><button class="btn" disabled>回写选中课次</button><button class="btn" disabled>修改授课模式</button><button class="btn" disabled>添加课导</button></div>
         <div class="order-schedule-board"><div class="order-schedule-grid"><div class="order-corner-cell"><b>日期</b><b>时间</b></div><div class="order-date-cell">2026-04-09<br>星期四</div><div class="order-time-cell">10:30 ~ 12:30</div><div class="order-lesson-cell"><div>ALEVEL-物理-AQA-线下</div><div>李春玲(VA000261)</div><div>--</div><div>备注：--</div><span>线下舜元</span></div></div></div>
       </div><div class="order-splitter"><span>↕</span></div></section>
       <section class="order-section ${calendarCollapsed ? 'is-collapsed' : ''}"><div class="order-section-head">教师日程 <span>▦</span><button data-action="toggle-order-section" data-section="calendar" aria-label="${calendarCollapsed ? '展开' : '收起'}教师日程">${calendarCollapsed ? '›' : '⌄'}</button></div><div class="order-section-body"><div class="order-schedule-tabs"><button class="active">日程总览</button><button>日程详情</button></div><div class="order-filter-bar"><label>日期<input value="▦  2026-04-09  至  2026-04-09"></label><label>时段<input class="time-range" value="08:20-10:20;10:30-12:30;13:30-15:30;16:00-18:00;18:30-20:30"></label><label>星期<select><option>请选择</option></select></label><div><button class="btn">重置</button><button class="btn primary">查询</button></div></div>
@@ -902,6 +912,7 @@
           ${capacityRow('预设班','preset',rule.reserveSeats.preset,disabled('capacity'))}
           ${capacityRow('自组班','custom',rule.reserveSeats.custom,disabled('capacity'))}
           ${capacityRow('1V1','oneToOne',rule.reserveSeats.oneToOne,disabled('capacity'))}
+          ${formRow('1V1教室座位数上限',`<input class="number-input" id="one-to-one-seat-limit" type="number" min="1" max="99" value="${rule.oneToOneSeatLimit}" ${disabled('capacity')}><span class="unit">座</span>`)}
         </div>
       </section>
     </div>`;
@@ -1076,10 +1087,12 @@
     const priorities = config.priorities || state.commonRule.roomPriorities[key];
     const priorityControls = priorities.map((value,index) => `<select class="select-input priority-select" id="special-room-${key}-priority-${index}">${options.map(option => `<option ${option === value ? 'selected' : ''}>${option}</option>`).join('')}</select>`).join('');
     const dateMode = config.effectType === 'date';
+    const seatLimitField = key === 'oneToOne' ? `<div class="modal-field"><label>教室座位数上限</label><div class="inline-number"><input class="number-input" id="special-seat-limit-${key}" type="number" min="1" max="99" value="${config.seatLimit || state.commonRule.oneToOneSeatLimit}"><span>座</span></div></div>` : '';
     return `<section class="campus-class-card editor ${config.enabled ? '' : 'is-hidden'}" data-campus-class-card="${key}"><div class="campus-class-card-head"><h3>${labels[key]}</h3></div>
       <div class="campus-class-fields">
         <div class="modal-field full"><label>适用课程项</label><div class="radio-group"><label class="radio"><input type="radio" name="special-course-mode-${key}" value="all" ${config.courseMode === 'all' ? 'checked' : ''}>全部课程项</label><label class="radio"><input type="radio" name="special-course-mode-${key}" value="specified" ${config.courseMode === 'specified' ? 'checked' : ''}>指定课程项</label></div>${courseCascadePicker(`special-courses-${key}`,config.courseMode === 'specified' ? config.courses : '',config.courseMode === 'specified','course-entry')}</div>
         <div class="modal-field"><label>预留座位数</label><div class="inline-number"><input class="number-input" id="special-reserve-${key}" type="number" min="0" max="99" value="${config.reserveSeats}"><span>座</span></div></div>
+        ${seatLimitField}
         <div class="modal-field full"><label>教室优先级</label><div class="priority-chain compact">${priorityControls}</div></div>
         <div class="modal-field full"><label>生效方式</label><div class="radio-group"><label class="radio"><input type="radio" name="special-effect-${key}" value="long" ${dateMode ? '' : 'checked'}>长期有效</label><label class="radio"><input type="radio" name="special-effect-${key}" value="date" ${dateMode ? 'checked' : ''}>指定日期</label></div><div class="date-range special-effect-date ${dateMode ? '' : 'is-hidden'}" data-special-effect-date="${key}"><input class="datetime-input" type="datetime-local" step="1" id="special-effect-start-${key}" value="${config.effectStart || '2026-09-01T00:00:00'}" ${dateMode ? '' : 'disabled'}><span>至</span><input class="datetime-input" type="datetime-local" step="1" id="special-effect-end-${key}" value="${config.effectEnd || '2026-12-31T23:59:59'}" ${dateMode ? '' : 'disabled'}></div></div>
       </div>
@@ -1101,13 +1114,15 @@
       if (courseMode === 'specified' && !courses) return toast('请输入指定课程项','error');
       const reserveSeats = Number(document.getElementById(`special-reserve-${key}`).value);
       if (!Number.isInteger(reserveSeats) || reserveSeats < 0 || reserveSeats > 99) return toast('预留座位数请输入0-99的整数','error');
+      const seatLimit = key === 'oneToOne' ? Number(document.getElementById(`special-seat-limit-${key}`).value) : undefined;
+      if (key === 'oneToOne' && (!Number.isInteger(seatLimit) || seatLimit < 1 || seatLimit > 99)) return toast('1V1教室座位数上限请输入1-99的整数','error');
       const priorities = [0,1,2,3].map(index => document.getElementById(`special-room-${key}-priority-${index}`).value);
       if (new Set(priorities).size !== priorities.length) return toast('同一班型的教室优先级不能重复','error');
       const effectType = modalRoot.querySelector(`input[name="special-effect-${key}"]:checked`)?.value || 'long';
       const effectStart = document.getElementById(`special-effect-start-${key}`).value;
       const effectEnd = document.getElementById(`special-effect-end-${key}`).value;
       if (effectType === 'date' && (!effectStart || !effectEnd || effectStart > effectEnd)) return toast('请选择正确的生效日期范围','error');
-      const nextConfig = { enabled:true, courseMode, courses:courseMode === 'all' ? '全部课程项' : courses, reserveSeats, priorities, effectType, effectStart:effectType === 'date' ? effectStart : '', effectEnd:effectType === 'date' ? effectEnd : '', status:'active' };
+      const nextConfig = { enabled:true, courseMode, courses:courseMode === 'all' ? '全部课程项' : courses, reserveSeats, ...(key === 'oneToOne' ? { seatLimit } : {}), priorities, effectType, effectStart:effectType === 'date' ? effectStart : '', effectEnd:effectType === 'date' ? effectEnd : '', status:'active' };
       nextConfig.status = resolveCampusConfigStatus(nextConfig);
       rule.classConfigs[key] = nextConfig;
     }
@@ -1140,7 +1155,7 @@
   function openPoolRule(id) {
     const room = state.rooms.find(x => x.id === id);
     if (!room) return;
-    if (room.status === '无效') return toast('无效教室不支持编辑匹配规则','error');
+    if (room.status === '无效') return toast('无效教室不支持编辑使用规则','error');
     const classOptions = poolClassTypes.map(item => item.label);
     const matchedClassTypes = room.restrictClass ? room.classTypes : classOptions;
     const specifiedCourse = Boolean(room.restrictCourse && room.courses && room.courses !== '全部课程项');
@@ -1150,24 +1165,25 @@
       : room.blockedTimes.length
         ? room.blockedTimes.map(time => normalizeBlockedPeriod({ time }))
         : [];
-    const manualPermissions = normalizeManualPermissionValues(room.manualPermissions || room.manualDepartments);
+    const terminalBlacklist = normalizeTerminalBlacklist(room.terminalBlacklist);
     const body = `<div class="room-rule-overview"><div class="room-rule-heading"><b>${escapeHtml(room.name)}</b></div><span>${escapeHtml(room.id)} · ${escapeHtml(room.school)} · ${escapeHtml(room.campus)} · ${escapeHtml(room.building)} · ${escapeHtml(room.floor)} · ${escapeHtml(room.type)}</span></div>
       <div class="room-rule-form">
         <section class="room-rule-section full auto-match-settings"><h3>自动匹配设置</h3>
           <div class="auto-match-toggle-row"><span>自动匹配</span><div class="radio-group"><label class="radio"><input type="radio" name="pool-auto" value="on" ${room.inPool ? 'checked' : ''}>开启</label><label class="radio"><input type="radio" name="pool-auto" value="off" ${room.inPool ? '' : 'checked'}>关闭</label></div></div>
           <div data-auto-match-on class="auto-match-conditional ${room.inPool ? '' : 'is-hidden'}"><div class="section-title-row"><h4>自动匹配禁用时段设置</h4><button class="btn" data-action="add-blocked-period">添加时段</button></div><div class="blocked-periods" id="blocked-periods">${periods.length ? periods.map((period,index)=>blockedPeriodRow(period,index)).join('') : '<div class="empty-periods">暂未配置自动匹配禁用时段</div>'}</div></div>
-          <div data-auto-match-off class="auto-match-conditional ${room.inPool ? 'is-hidden' : ''}"><div class="pool-setting-heading">人工使用权限设置</div>${manualPermissionSettingMarkup(manualPermissions,'data-room-manual-permissions')}</div>
         </section>
-        <section class="room-rule-section full"><h3>教室匹配范围</h3>
-          <div class="pool-setting-heading">匹配班型</div>
+        <section class="room-rule-section full room-availability-settings"><h3>教室可用范围设置</h3>
+          <div class="pool-setting-heading">教室禁用黑名单</div>
+          ${terminalBlacklistSettingMarkup(terminalBlacklist,'data-room-terminal-blacklist')}
+          <div class="pool-setting-heading divided">教室可用班型</div>
           <div class="conditional-config" id="pool-class-config">${classOptions.map(item => `<label class="check"><input type="checkbox" data-pool-class value="${item}" ${matchedClassTypes.includes(item) ? 'checked' : ''}>${item}</label>`).join('')}</div>
           <div data-pool-course-settings>
-            <div class="pool-setting-heading divided">匹配课程项</div>
+            <div class="pool-setting-heading divided">教室可用课程项</div>
             ${courseSetting}
           </div>
         </section>
       </div>`;
-    openModal({ title: '配置教室匹配规则', body, wide:true, confirm: '保存', confirmAction: 'save-pool-rule' });
+    openModal({ title: '配置教室使用规则', body, wide:true, confirm: '保存', confirmAction: 'save-pool-rule' });
     modalRoot.querySelector('[data-action="save-pool-rule"]').dataset.id = room.id;
     syncPoolClassCourseAvailability();
   }
@@ -1182,19 +1198,19 @@
       : room.blockedTimes.length
         ? room.blockedTimes.map(time => normalizeBlockedPeriod({ time }))
         : [];
-    const manualPermissions = normalizeManualPermissionValues(room.manualPermissions || room.manualDepartments);
+    const terminalBlacklist = normalizeTerminalBlacklist(room.terminalBlacklist);
     const periodMarkup = periods.length
-      ? periods.map((period,index) => `<div class="pool-rule-view-period"><b>时段${index + 1}</b><span>${escapeHtml(`${period.startDate} 至 ${period.endDate} ${period.startTime}-${period.endTime}`)}</span><em>人工使用权限：${escapeHtml(period.manualPermissions.join('、'))}</em></div>`).join('')
+      ? periods.map((period,index) => `<div class="pool-rule-view-period"><b>时段${index + 1}</b><span>${escapeHtml(`${period.startDate} 至 ${period.endDate} ${period.startTime}-${period.endTime}`)}</span></div>`).join('')
       : '<div class="pool-rule-view-empty">暂未配置自动匹配禁用时段</div>';
     const body = `<div class="room-rule-overview"><div class="room-rule-heading"><b>${escapeHtml(room.name)}</b><span class="pool-overview-status ${room.inPool ? 'on' : 'off'}">${room.inPool ? '开启自动匹配' : '关闭自动匹配'}</span></div><span>${escapeHtml(room.id)} · ${escapeHtml(room.school)} · ${escapeHtml(room.campus)} · ${escapeHtml(room.building)} · ${escapeHtml(room.floor)} · ${escapeHtml(room.type)}</span></div>
       <div class="room-rule-form pool-rule-view">
         <section class="room-rule-section full"><h3>自动匹配设置</h3>
-          ${room.inPool ? `<div class="pool-rule-view-block"><h4>自动匹配禁用时段设置</h4><div class="pool-rule-view-periods">${periodMarkup}</div></div>` : `<div class="pool-rule-view-block"><h4>人工使用权限设置</h4><div class="pool-rule-view-tags">${manualPermissions.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div></div>`}
+          ${room.inPool ? `<div class="pool-rule-view-block"><h4>自动匹配禁用时段设置</h4><div class="pool-rule-view-periods">${periodMarkup}</div></div>` : '<div class="pool-rule-view-empty auto-off">自动匹配已关闭</div>'}
         </section>
-        <section class="room-rule-section full"><h3>教室匹配范围</h3><div class="pool-rule-view-grid pool-rule-range-view"><div><span>匹配班型</span><b>${escapeHtml(classTypes.join('、'))}</b></div><div><span>匹配课程项</span><b>${escapeHtml(courses)}</b></div></div></section>
+        <section class="room-rule-section full"><h3>教室可用范围设置</h3><div class="pool-rule-view-grid pool-rule-range-view"><div><span>教室禁用黑名单</span><b>${escapeHtml(terminalBlacklist.length ? terminalBlacklist.join('、') : '无')}</b></div><div><span>教室可用班型</span><b>${escapeHtml(classTypes.join('、'))}</b></div><div><span>教室可用课程项</span><b>${escapeHtml(courses)}</b></div></div></section>
       </div>`;
     const editable = room.status !== '无效';
-    openModal({ title:'查看教室匹配规则', body, wide:true, confirm:'编辑', confirmAction:editable ? 'edit-pool-from-detail' : '', cancel:'关闭' });
+    openModal({ title:'查看教室使用规则', body, wide:true, confirm:'编辑', confirmAction:editable ? 'edit-pool-from-detail' : '', cancel:'关闭' });
     const editButton = modalRoot.querySelector('[data-action="edit-pool-from-detail"]');
     if (editButton) editButton.dataset.id = room.id;
   }
@@ -1208,32 +1224,33 @@
         <section class="room-rule-section full auto-match-settings"><h3>自动匹配设置</h3>
           <div class="auto-match-toggle-row"><span>自动匹配</span><div class="radio-group"><label class="radio"><input type="radio" name="pool-auto" value="on" checked>开启</label><label class="radio"><input type="radio" name="pool-auto" value="off">关闭</label></div></div>
           <div data-auto-match-on class="auto-match-conditional"><div class="section-title-row"><h4>自动匹配禁用时段设置</h4><button class="btn" data-action="add-blocked-period">添加时段</button></div><div class="blocked-periods" id="blocked-periods"><div class="empty-periods">暂未配置自动匹配禁用时段</div></div></div>
-          <div data-auto-match-off class="auto-match-conditional is-hidden"><div class="pool-setting-heading">人工使用权限设置</div>${manualPermissionSettingMarkup(manualUsePermissionOptions,'data-room-manual-permissions')}</div>
         </section>
-        <section class="room-rule-section full"><h3>教室匹配范围</h3>
-          <div class="pool-setting-heading">匹配班型</div>
+        <section class="room-rule-section full room-availability-settings"><h3>教室可用范围设置</h3>
+          <div class="pool-setting-heading">教室禁用黑名单</div>
+          ${terminalBlacklistSettingMarkup([],'data-room-terminal-blacklist')}
+          <div class="pool-setting-heading divided">教室可用班型</div>
           <div class="conditional-config" id="pool-class-config">${classOptions.map(item => `<label class="check"><input type="checkbox" data-pool-class value="${item}" checked>${item}</label>`).join('')}</div>
           <div data-pool-course-settings>
-            <div class="pool-setting-heading divided">匹配课程项</div>
+            <div class="pool-setting-heading divided">教室可用课程项</div>
             ${courseSetting}
           </div>
         </section>
       </div>`;
-    openModal({ title:'批量设置教室匹配规则', body, wide:true, confirm:'保存', confirmAction:'save-batch-pool-rule' });
+    openModal({ title:'批量配置教室使用规则', body, wide:true, confirm:'保存', confirmAction:'save-batch-pool-rule' });
     syncPoolClassCourseAvailability();
   }
 
   function emptyBlockedPeriod() {
-    return { startDate:'', endDate:'', startTime:'', endTime:'', manualPermissions:[...manualUsePermissionOptions] };
+    return { startDate:'', endDate:'', startTime:'', endTime:'' };
   }
 
-  function normalizeManualPermissionValues(values = []) {
-    const selected = manualUsePermissionOptions.filter(item => Array.isArray(values) && values.includes(item));
-    return selected.length ? selected : [...manualUsePermissionOptions];
+  function normalizeTerminalBlacklist(values) {
+    if (!Array.isArray(values)) return [];
+    return roomTerminalOptions.filter(item => values.includes(item));
   }
 
   function normalizeBlockedPeriod(period = {}) {
-    if ('startDate' in period || 'endDate' in period || 'startTime' in period || 'endTime' in period) return { ...emptyBlockedPeriod(), ...period, manualPermissions:normalizeManualPermissionValues(period.manualPermissions || period.allowedDepartments) };
+    if ('startDate' in period || 'endDate' in period || 'startTime' in period || 'endTime' in period) return { ...emptyBlockedPeriod(), ...period };
     const text = period.time || '';
     const dates = text.match(/(\d{4}-\d{2}-\d{2})\s*至\s*(\d{4}-\d{2}-\d{2})/);
     const times = text.match(/(\d{2}:\d{2})\s*[-至]\s*(\d{2}:\d{2})/);
@@ -1241,20 +1258,19 @@
       startDate:dates?.[1] || (text ? '2026-08-15' : ''),
       endDate:dates?.[2] || (text ? '2026-09-15' : ''),
       startTime:times?.[1] || (text ? '10:30' : ''),
-      endTime:times?.[2] || (text ? '15:30' : ''),
-      manualPermissions:normalizeManualPermissionValues(period.manualPermissions || period.allowedDepartments)
+      endTime:times?.[2] || (text ? '15:30' : '')
     };
   }
 
-  function manualPermissionSettingMarkup(selectedPermissions = [],extraAttribute = '') {
-    const selected = normalizeManualPermissionValues(selectedPermissions);
-    const options = manualUsePermissionOptions.map(item => `<label class="check"><input type="checkbox" data-manual-permission-value value="${item}" ${selected.includes(item) ? 'checked' : ''}>${item}</label>`).join('');
+  function terminalBlacklistSettingMarkup(selectedTerminals = [],extraAttribute = '') {
+    const selected = normalizeTerminalBlacklist(selectedTerminals);
+    const options = roomTerminalOptions.map(item => `<label class="check"><input type="checkbox" data-terminal-blacklist-value value="${item}" ${selected.includes(item) ? 'checked' : ''}>${item}</label>`).join('');
     return `<div class="manual-permission-setting" ${extraAttribute}><div class="manual-permission-options">${options}</div></div>`;
   }
 
   function blockedPeriodRow(period,index) {
     const value = normalizeBlockedPeriod(typeof period === 'string' ? { time:period } : period);
-    return `<div class="blocked-period-row"><div class="blocked-period-head"><b>时段${index + 1}</b><button class="link-btn danger-link" data-action="remove-blocked-period">删除</button></div><div class="blocked-period-config"><label>自动匹配禁用时段</label><div class="blocked-period-range"><input class="date-input" type="date" data-period-start-date value="${value.startDate}"><span>至</span><input class="date-input" type="date" data-period-end-date value="${value.endDate}"><input class="time-input" type="time" data-period-start-time value="${value.startTime}"><span>至</span><input class="time-input" type="time" data-period-end-time value="${value.endTime}"></div></div><div class="blocked-period-config"><label>人工使用权限</label>${manualPermissionSettingMarkup(value.manualPermissions)}</div></div>`;
+    return `<div class="blocked-period-row"><div class="blocked-period-head"><b>时段${index + 1}</b><button class="link-btn danger-link" data-action="remove-blocked-period">删除</button></div><div class="blocked-period-config"><label>自动匹配禁用时段</label><div class="blocked-period-range"><input class="date-input" type="date" data-period-start-date value="${value.startDate}"><span>至</span><input class="date-input" type="date" data-period-end-date value="${value.endDate}"><input class="time-input" type="time" data-period-start-time value="${value.startTime}"><span>至</span><input class="time-input" type="time" data-period-end-time value="${value.endTime}"></div></div></div>`;
   }
 
   function readBlockedPeriods() {
@@ -1267,37 +1283,29 @@
       if (!startDate || !endDate || !startTime || !endTime) { toast(`请完整填写时段${index + 1}的日期和时间`,'error'); return null; }
       if (startDate > endDate) { toast(`时段${index + 1}的结束日期不能早于开始日期`,'error'); return null; }
       if (startTime >= endTime) { toast(`时段${index + 1}的结束时间必须晚于开始时间`,'error'); return null; }
-      const manualPermissions = readManualPermission(row.querySelector('.manual-permission-setting'));
-      if (!manualPermissions) return null;
-      blockedPeriods.push({ startDate,endDate,startTime,endTime,manualPermissions });
+      blockedPeriods.push({ startDate,endDate,startTime,endTime });
     }
     return blockedPeriods;
   }
 
-  function readManualPermission(target) {
+  function readTerminalBlacklist(target) {
     const container = typeof target === 'string' ? modalRoot.querySelector(target) : target;
     if (!container) return [];
-    const permissions = manualUsePermissionOptions.filter(name => [...container.querySelectorAll('[data-manual-permission-value]:checked')].some(input => input.value === name));
-    if (!permissions.length) {
-      toast('请至少选择一项人工使用权限','error');
-      return null;
-    }
-    return permissions;
+    return roomTerminalOptions.filter(name => [...container.querySelectorAll('[data-terminal-blacklist-value]:checked')].some(input => input.value === name));
   }
 
   function savePoolRule(id) {
     const room = state.rooms.find(item => item.id === id);
     const autoEnabled = modalRoot.querySelector('input[name="pool-auto"]:checked')?.value === 'on';
     const classTypes = [...modalRoot.querySelectorAll('[data-pool-class]:checked')].map(input => input.value);
-    if (!classTypes.length) return toast('请至少选择一个匹配班型','error');
+    if (!classTypes.length) return toast('请至少选择一个教室可用班型','error');
     const enabledClassTypes = classTypes;
     const courseMode = modalRoot.querySelector('input[name="pool-course-mode"]:checked')?.value || 'all';
     const courses = courseMode === 'specified' ? document.getElementById('pool-courses').value.trim() : '';
-    if (courseMode === 'specified' && !courses) return toast('请选择指定课程项','error');
+    if (courseMode === 'specified' && !courses) return toast('请选择教室可用课程项','error');
     const blockedPeriods = autoEnabled ? readBlockedPeriods() : [];
     if (!blockedPeriods) return;
-    const manualPermissions = autoEnabled ? normalizeManualPermissionValues(room.manualPermissions || room.manualDepartments) : readManualPermission('[data-room-manual-permissions]');
-    if (!manualPermissions) return;
+    const terminalBlacklist = readTerminalBlacklist('[data-room-terminal-blacklist]');
     room.inPool = autoEnabled;
     room.restrictClass = enabledClassTypes.length < poolClassTypes.length;
     room.classTypes = enabledClassTypes;
@@ -1305,23 +1313,25 @@
     room.courses = courseMode === 'specified' ? courses : '全部课程项';
     delete room.classCourses;
     delete room.classCourseModes;
-    room.manualPermissions = manualPermissions;
+    room.terminalBlacklist = terminalBlacklist;
+    delete room.disabledTerminals;
+    delete room.availableTerminals;
+    delete room.manualPermissions;
     room.blockedPeriods = blockedPeriods;
     room.blockedTimes = blockedPeriods.map(period => `${period.startDate} 至 ${period.endDate} ${period.startTime}-${period.endTime}`);
-    closeModal(); render(); toast('教室匹配规则已保存');
+    closeModal(); render(); toast('教室使用规则已保存');
   }
 
   function saveBatchPoolRule() {
     const autoEnabled = modalRoot.querySelector('input[name="pool-auto"]:checked')?.value === 'on';
     const classTypes = [...modalRoot.querySelectorAll('[data-pool-class]:checked')].map(input => input.value);
-    if (!classTypes.length) return toast('请至少选择一个匹配班型','error');
+    if (!classTypes.length) return toast('请至少选择一个教室可用班型','error');
     const courseMode = modalRoot.querySelector('input[name="pool-course-mode"]:checked')?.value || 'all';
     const courses = courseMode === 'specified' ? document.getElementById('pool-courses').value.trim() : '';
-    if (courseMode === 'specified' && !courses) return toast('请选择指定课程项','error');
+    if (courseMode === 'specified' && !courses) return toast('请选择教室可用课程项','error');
     const blockedPeriods = autoEnabled ? readBlockedPeriods() : [];
     if (!blockedPeriods) return;
-    const manualPermissions = autoEnabled ? [...manualUsePermissionOptions] : readManualPermission('[data-room-manual-permissions]');
-    if (!manualPermissions) return;
+    const terminalBlacklist = readTerminalBlacklist('[data-room-terminal-blacklist]');
     const selected = state.rooms.filter(room => room.status !== '无效' && state.selectedRooms.has(room.id));
     selected.forEach(room => {
       room.inPool = autoEnabled;
@@ -1331,12 +1341,15 @@
       room.courses = courseMode === 'specified' ? courses : '全部课程项';
       delete room.classCourses;
       delete room.classCourseModes;
-      room.manualPermissions = [...manualPermissions];
-      room.blockedPeriods = blockedPeriods.map(period => ({ ...period, manualPermissions:[...period.manualPermissions] }));
+      room.terminalBlacklist = [...terminalBlacklist];
+      delete room.disabledTerminals;
+      delete room.availableTerminals;
+      delete room.manualPermissions;
+      room.blockedPeriods = blockedPeriods.map(period => ({ ...period }));
       room.blockedTimes = blockedPeriods.map(period => `${period.startDate} 至 ${period.endDate} ${period.startTime}-${period.endTime}`);
     });
     state.selectedRooms.clear();
-    closeModal(); render(); toast(`已批量更新${selected.length}间教室的匹配规则`);
+    closeModal(); render(); toast(`已批量更新${selected.length}间教室的使用规则`);
   }
 
   function openMatrix() {
@@ -1350,7 +1363,7 @@
 
   function openImpactPreview() {
     const rule = state.commonRule;
-    openModal({ title: '通用规则影响预览', wide: true, body: `${stats([['▤','9','使用通用参数的校区'],['▦','286','匹配范围内课节'],['◇','72','自动池内教室'],['△','0','参数冲突']])}<div class="modal-table" style="margin-top:15px"><table><thead><tr><th>配置项</th><th>当前值</th><th>影响说明</th></tr></thead><tbody><tr><td>匹配范围</td><td>${rangeSettingText(rule.ranges.preset)} / ${rangeSettingText(rule.ranges.custom)} / ${rangeSettingText(rule.ranges.oneToOne)}</td><td>依次对应预设班、自组班、1V1</td></tr><tr><td>教室匹配优先级</td><td>${prioritySummary(rule.roomPriorities)}</td><td>不同班型分别使用独立的教室类型排序</td></tr><tr><td>需要的教室容量</td><td>预设班+${rule.reserveSeats.preset}；自组班+${rule.reserveSeats.custom}；1V1+${rule.reserveSeats.oneToOne}</td><td>需要的教室容量=<b>当前进班人数+预留座位数</b></td></tr></tbody></table></div>`, confirm: '确认无误', confirmAction: 'close-modal' });
+    openModal({ title: '通用规则影响预览', wide: true, body: `${stats([['▤','9','使用通用参数的校区'],['▦','286','匹配范围内课节'],['◇','72','自动池内教室'],['△','0','参数冲突']])}<div class="modal-table" style="margin-top:15px"><table><thead><tr><th>配置项</th><th>当前值</th><th>影响说明</th></tr></thead><tbody><tr><td>匹配范围</td><td>${rangeSettingText(rule.ranges.preset)} / ${rangeSettingText(rule.ranges.custom)} / ${rangeSettingText(rule.ranges.oneToOne)}</td><td>依次对应预设班、自组班、1V1</td></tr><tr><td>教室匹配优先级</td><td>${prioritySummary(rule.roomPriorities)}</td><td>不同班型分别使用独立的教室类型排序</td></tr><tr><td>需要的教室容量</td><td>预设班+${rule.reserveSeats.preset}；自组班+${rule.reserveSeats.custom}；1V1+${rule.reserveSeats.oneToOne}（教室上限${rule.oneToOneSeatLimit}座）</td><td>需要的教室容量=<b>当前进班人数+预留座位数</b>；1V1同时限制教室座位数上限</td></tr></tbody></table></div>`, confirm: '确认无误', confirmAction: 'close-modal' });
   }
 
   function rangeSettingText(setting) {
@@ -1381,7 +1394,10 @@
         if (!Number.isInteger(value) || value < 0 || value > 99) return toast('预留座位数请输入0-99的整数','error');
         reserveSeats[key] = value;
       }
+      const oneToOneSeatLimit = Number(document.getElementById('one-to-one-seat-limit').value);
+      if (!Number.isInteger(oneToOneSeatLimit) || oneToOneSeatLimit < 1 || oneToOneSeatLimit > 99) return toast('1V1教室座位数上限请输入1-99的整数','error');
       state.commonRule.reserveSeats = reserveSeats;
+      state.commonRule.oneToOneSeatLimit = oneToOneSeatLimit;
     }
     state.globalSavedAt = new Date().toLocaleString('zh-CN',{hour12:false});
     state.commonEditing = null;
@@ -1740,17 +1756,6 @@
       modalRoot.querySelectorAll('[data-media-room-option]').forEach(option => option.classList.toggle('selected',option.contains(event.target)));
       return;
     }
-    if (event.target.matches('[data-media-failure-check-all]')) {
-      modalRoot.querySelectorAll('[data-media-failure-check]').forEach(input => {
-        if (!input.disabled) input.checked = event.target.checked;
-      });
-      updateMediaFailureSelection();
-      return;
-    }
-    if (event.target.matches('[data-media-failure-check]')) {
-      updateMediaFailureSelection();
-      return;
-    }
     if (event.target.matches('input[name="effect"]')) {
       const dateField = document.getElementById('effect-date-field');
       if (!dateField) return;
@@ -1799,6 +1804,7 @@
     if (action === 'add-campus-entity') return openCampusEditor();
     if (action === 'view-campus-entity') return openCampusViewer(el.dataset.code);
     if (action === 'edit-campus-entity') return openCampusEditor(el.dataset.code);
+    if (action === 'edit-campus-buildings') return openCampusBuildingEditor(el.dataset.code);
     if (action === 'add-classroom') return openClassroomEditor();
     if (action === 'edit-classroom') return openClassroomEditor(el.dataset.id);
     if (action === 'toggle-switch') { el.classList.toggle('on'); return; }
@@ -1829,7 +1835,6 @@
     if (action === 'open-capacity-date-detail') return openMissingLessonsDrawer('capacity',el.dataset.date);
     if (action === 'toggle-auto-matching-task') return toggleAutoMatchingTask();
     if (action === 'open-auto-task-log') return openAutoTaskLog();
-    if (action === 'run-auto-matching') return runManualMatchingTask();
     if (action === 'quick-transfer-room') return openTransferRoom(el.dataset.id);
     if (action === 'transfer-room') return openTransferRoom(el.dataset.id);
     if (action === 'convert-online') return convertLessonOnline(el.dataset.id);
@@ -1884,7 +1889,6 @@
     if (event.target.matches('input[name="pool-auto"]')) {
       const enabled = event.target.value === 'on';
       modalRoot.querySelector('[data-auto-match-on]')?.classList.toggle('is-hidden',!enabled);
-      modalRoot.querySelector('[data-auto-match-off]')?.classList.toggle('is-hidden',enabled);
       return;
     }
     if (event.target.matches('[data-campus-class-toggle]')) {
@@ -1991,8 +1995,12 @@
       activateCourseCascade(el.closest('[data-course-cascade]'),el.dataset.rootId,el.dataset.groupId);
       return;
     }
-    if (action === 'send-media-notice') return sendMediaFailureNotice(el.dataset.id,el);
-    if (action === 'send-selected-media-notices') return sendSelectedMediaFailureNotices();
+    if (action === 'open-media-lesson-copy') return openMediaLessonCopyDialog(el.dataset.id);
+    if (action === 'close-media-copy-dialog') {
+      el.closest('[data-media-copy-dialog]')?.remove();
+      return;
+    }
+    if (action === 'copy-media-lesson-content') return copyMediaLessonInfo(el.dataset.id,el);
     if (action === 'replace-media-room') return openMediaRoomReplacement(el.dataset.id);
     if (action === 'filter-media-rooms') return applyMediaRoomFilter();
     if (action === 'reset-media-room-filter') return resetMediaRoomFilter();
@@ -2018,6 +2026,7 @@
       return;
     }
     if (action === 'save-campus-entity') return saveCampusEntity(el.dataset.originalCode);
+    if (action === 'save-campus-buildings') return saveCampusBuildings(el.dataset.code);
     if (action === 'add-inline-building') {
       const container = document.getElementById('inline-buildings');
       const index = container.querySelectorAll('.inline-building').length;

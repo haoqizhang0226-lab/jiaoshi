@@ -176,10 +176,14 @@
 .priority-chain.compact { grid-template-columns: repeat(4,minmax(125px,1fr)); }
 .priority-node { min-width: 0; }
 .priority-node .priority-select, .priority-chain .priority-select { width: 100%; min-width: 0; }
-.common-card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); align-items: stretch; }
-.common-card-grid .common-edit-card { min-height: 360px; height: 100%; display: flex; flex-direction: column; }
+.common-card-grid { grid-template-columns: minmax(0,1fr); align-items: stretch; }
+.common-card-grid .common-edit-card { min-height: 0; display: flex; flex-direction: column; }
 .common-card-grid .common-edit-card .panel-body { flex: 1; }
 .common-card-grid .common-edit-card:last-child { grid-column: auto; }
+.common-class-rule-card .form-row { grid-template-columns: 150px minmax(0,1fr); min-height: 58px; }
+.common-class-rule-card .panel-head h3 { font-size: 15px; }
+.common-class-rule-card .common-priority-chain { width: min(100%,920px); }
+.common-capacity-formula { margin-left: 12px; padding-left: 13px; border-left: 1px solid #dfe6ef; color: #7a8799; font-size: 11px; }
 .capacity-formula { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding: 12px 14px; border: 1px solid #d9e6f6; border-radius: 5px; background: #f4f8fe; }
 .capacity-formula span { color: #64758a; font-size: 11px; }
 .capacity-formula b { color: #2d4768; font-size: 12px; }

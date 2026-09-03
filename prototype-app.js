@@ -890,32 +890,27 @@
   function renderGlobalV2() {
     const rule = state.commonRule;
     const editing = state.commonEditing;
-    const readClass = section => editing === section ? 'is-editing' : 'read-mode';
-    const disabled = section => editing === section ? '' : 'disabled';
-    return `<div class="global-config-grid common-card-grid">
-      <section class="panel common-edit-card ${readClass('auto')}">
-        ${commonSectionHead('匹配范围设置','auto',editing)}
-        <div class="panel-body">
-          ${formRow('预设班匹配范围',matchRangeControl('preset',rule.ranges.preset,disabled('auto')))}
-          ${formRow('自组班匹配范围',matchRangeControl('custom',rule.ranges.custom,disabled('auto')))}
-          ${formRow('1V1匹配范围',matchRangeControl('oneToOne',rule.ranges.oneToOne,disabled('auto')))}
-        </div>
-      </section>
-      <section class="panel common-edit-card ${readClass('priority')}">
-        ${commonSectionHead('教室匹配优先级设置','priority',editing)}
-        <div class="panel-body">${roomPriorityFields('room',rule.roomPriorities,disabled('priority'))}</div>
-      </section>
-      <section class="panel common-edit-card ${readClass('capacity')}">
-        ${commonSectionHead('需要的教室容量设置','capacity',editing)}
-        <div class="panel-body">
-          <div class="capacity-formula"><span>需要的教室容量=</span><b>当前进班人数+预留座位数</b></div>
-          ${capacityRow('预设班','preset',rule.reserveSeats.preset,disabled('capacity'))}
-          ${capacityRow('自组班','custom',rule.reserveSeats.custom,disabled('capacity'))}
-          ${capacityRow('1V1','oneToOne',rule.reserveSeats.oneToOne,disabled('capacity'))}
-          ${formRow('1V1教室座位数上限',`<input class="number-input" id="one-to-one-seat-limit" type="number" min="1" max="99" value="${rule.oneToOneSeatLimit}" ${disabled('capacity')}><span class="unit">座</span>`)}
-        </div>
-      </section>
+    const labels = { preset:'预设班', custom:'自组班', oneToOne:'1V1' };
+    return `<div class="global-config-grid common-card-grid common-class-rule-list">
+      ${Object.entries(labels).map(([key,label]) => commonClassRuleCard(key,label,rule,editing)).join('')}
     </div>`;
+  }
+
+  function commonClassRuleCard(key,label,rule,editing) {
+    const isEditing = editing === key;
+    const disabled = isEditing ? '' : 'disabled';
+    const seatLimit = key === 'oneToOne'
+      ? formRow('教室座位数上限',`<input class="number-input" id="one-to-one-seat-limit" type="number" min="1" max="99" value="${rule.oneToOneSeatLimit}" ${disabled}><span class="unit">座</span>`)
+      : '';
+    return `<section class="panel common-edit-card common-class-rule-card ${isEditing ? 'is-editing' : 'read-mode'}" data-common-class-rule="${key}">
+      ${commonSectionHead(`${label}通用规则`,key,editing)}
+      <div class="panel-body">
+        ${formRow('课节匹配范围',matchRangeControl(key,rule.ranges[key],disabled))}
+        ${formRow('教室类型优先级',roomPriorityControl(key,rule.roomPriorities[key],disabled))}
+        ${formRow('预留座位数',`<input class="number-input" id="reserve-${key}" type="number" min="0" max="99" value="${rule.reserveSeats[key]}" ${disabled}><span class="unit">座</span><span class="common-capacity-formula">需要的教室容量 = 当前进班人数 + 预留座位数</span>`)}
+        ${seatLimit}
+      </div>
+    </section>`;
   }
 
   function matchRangeControl(key, setting, disabled = '') {
@@ -930,14 +925,9 @@
     return `<div class="panel-head"><h3>${title}</h3>${controls}</div>`;
   }
 
-  function roomPriorityFields(prefix,priorities,disabled = '') {
-    const labels = { preset:'预设班', custom:'自组班', oneToOne:'1V1' };
+  function roomPriorityControl(key,priorities,disabled = '') {
     const options = ['多媒体教室','白板教室','教学点','外租教室'];
-    return ['preset','custom','oneToOne'].map(key => `<div class="priority-lane"><div class="setting-subtitle">${labels[key]}</div><div class="priority-chain">${priorities[key].map((value,index) => `<div class="priority-node"><select class="select-input priority-select" id="${prefix}-${key}-priority-${index}" ${disabled}>${options.map(option => `<option ${option === value ? 'selected' : ''}>${option}</option>`).join('')}</select></div>`).join('')}</div></div>`).join('');
-  }
-
-  function capacityRow(label,key,value,disabled = '') {
-    return formRow(`${label}预留座位数`,`<input class="number-input" id="reserve-${key}" type="number" min="0" max="99" value="${value}" ${disabled}><span class="unit">座</span>`);
+    return `<div class="priority-chain common-priority-chain">${priorities.map((value,index) => `<div class="priority-node"><select class="select-input priority-select" id="room-${key}-priority-${index}" ${disabled}>${options.map(option => `<option ${option === value ? 'selected' : ''}>${option}</option>`).join('')}</select></div>`).join('')}</div>`;
   }
 
   function formRow(label, value) { return `<div class="form-row"><div class="form-label">${label}</div><div class="form-value">${value}</div></div>`; }
@@ -1371,39 +1361,27 @@
   }
 
   function saveCommonSection(section) {
-    if (section === 'auto') {
-      const ranges = {};
-      for (const key of ['preset','custom','oneToOne']) {
-        const mode = document.getElementById(`range-${key}`).value;
-        const days = Number(document.getElementById(`range-${key}-days`).value);
-        if (mode === 'days' && (!Number.isInteger(days) || days < 1 || days > 365)) return toast('未来天数请输入1-365的整数','error');
-        ranges[key] = { mode, days: Number.isInteger(days) && days > 0 ? days : state.commonRule.ranges[key].days };
-      }
-      state.commonRule.ranges = ranges;
-    } else if (section === 'priority') {
-      const roomPriorities = {};
-      for (const key of ['preset','custom','oneToOne']) {
-        roomPriorities[key] = [0,1,2,3].map(index => document.getElementById(`room-${key}-priority-${index}`).value);
-        if (new Set(roomPriorities[key]).size !== roomPriorities[key].length) return toast('同一班型的教室优先级不能选择重复项','error');
-      }
-      state.commonRule.roomPriorities = roomPriorities;
-    } else if (section === 'capacity') {
-      const reserveSeats = {};
-      for (const key of ['preset','custom','oneToOne']) {
-        const value = Number(document.getElementById(`reserve-${key}`).value);
-        if (!Number.isInteger(value) || value < 0 || value > 99) return toast('预留座位数请输入0-99的整数','error');
-        reserveSeats[key] = value;
-      }
+    const labels = { preset:'预设班', custom:'自组班', oneToOne:'1V1' };
+    if (!labels[section]) return;
+    const mode = document.getElementById(`range-${section}`).value;
+    const days = Number(document.getElementById(`range-${section}-days`).value);
+    if (mode === 'days' && (!Number.isInteger(days) || days < 1 || days > 365)) return toast('未来天数请输入1-365的整数','error');
+    const priorities = [0,1,2,3].map(index => document.getElementById(`room-${section}-priority-${index}`).value);
+    if (new Set(priorities).size !== priorities.length) return toast('同一班型的教室类型优先级不能选择重复项','error');
+    const reserveSeats = Number(document.getElementById(`reserve-${section}`).value);
+    if (!Number.isInteger(reserveSeats) || reserveSeats < 0 || reserveSeats > 99) return toast('预留座位数请输入0-99的整数','error');
+    if (section === 'oneToOne') {
       const oneToOneSeatLimit = Number(document.getElementById('one-to-one-seat-limit').value);
       if (!Number.isInteger(oneToOneSeatLimit) || oneToOneSeatLimit < 1 || oneToOneSeatLimit > 99) return toast('1V1教室座位数上限请输入1-99的整数','error');
-      state.commonRule.reserveSeats = reserveSeats;
       state.commonRule.oneToOneSeatLimit = oneToOneSeatLimit;
     }
+    state.commonRule.ranges[section] = { mode, days: Number.isInteger(days) && days > 0 ? days : state.commonRule.ranges[section].days };
+    state.commonRule.roomPriorities[section] = priorities;
+    state.commonRule.reserveSeats[section] = reserveSeats;
     state.globalSavedAt = new Date().toLocaleString('zh-CN',{hour12:false});
     state.commonEditing = null;
     render();
-    const messages = { auto:'匹配范围设置已保存', priority:'教室匹配优先级设置已保存', capacity:'需要的教室容量设置已保存' };
-    toast(messages[section]);
+    toast(`${labels[section]}通用规则已保存`);
   }
 
   function openManualTask() {
